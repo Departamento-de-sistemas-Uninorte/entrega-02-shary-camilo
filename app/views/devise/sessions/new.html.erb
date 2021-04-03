@@ -1,0 +1,62 @@
+<%= render "devise/shared/error_messages", resource: resource %>
+
+<div class="container">
+  <div class="d-flex justify-content-center h-100">
+    <div class="card-login">
+      <div class="card-header d-flex justify-content-center" >
+          <p class="title-header">Sign in</p>
+      </div>
+      <div class="card-body">
+        <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+          
+
+          <div class="input-group form-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fas fa-user"></i></span>
+              </div>
+              <%= f.text_field :email, 
+                  type:"text", 
+                  class:"form-control", 
+                  autofocus: true, 
+                  autocomplete: "email",
+                  placeholder: "email" %>
+          </div>
+
+          <div class="input-group form-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text"><i class="fas fa-key"></i></span>
+            </div>
+              <%= f.password_field :password, 
+                  type:"password", 
+                  class:"form-control",
+                  autocomplete: "new-password",
+                  placeholder: "Password"  %>
+          </div>
+
+        <% if devise_mapping.rememberable? %>
+            <div class="field d-flex remember">
+                <%= f.check_box :remember_me %>
+                <%= f.label :remember_me %>
+            </div>
+        <% end %>
+        
+        <div class="input-group form-group">
+            <%= f.submit "Sign in", class:"btn float-right login_btn"%>
+          </div>
+        <% end %>
+      </div>
+      <div class="card-footer">
+        <div class="d-flex justify-content-center links">
+        Haven't registered yet?<%= link_to "Sign up", new_registration_path(resource_name) %>
+        </div>
+        <div class="d-flex justify-content-center">
+          <%= link_to "Forgot your password?", new_password_path(resource_name) %>
+        </div>
+        <div class="d-flex justify-content-center">
+          <%= link_to "Didn't receive confirmation email?", new_confirmation_path(resource_name) %>
+        </div>
+      </div>
+    </div>  
+    </div>
+  </div>
+</div>

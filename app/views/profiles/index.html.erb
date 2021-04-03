@@ -1,0 +1,28 @@
+<header id="main-header">
+	<nav>
+		<ul>
+		
+		</ul>
+	</nav>
+</header>
+
+<div>
+	<%= form_with(model: @profile, local: true) do |form| %>
+		<div class="field">
+			<%= form.text_area :tweet , placeholder: "¿Qué estás pensando?", maxlength:"280"%>
+		</div>
+		<div>
+			<%= form.submit "publicar" %>
+		</div>
+	<% end %>
+
+</div>
+<div>
+	<% @profiles.each do |t|%>
+		
+		<p><%=t.user_name%> - <%=t.tweet%> 
+		<%= link_to 'show', profile_path(t), method: :get=%>
+		<%= link_to 'delete', profile_path(t),
+				method: :delete, data: { confirm: 'Are you sure?' }=%>
+	<%end%>
+</div>

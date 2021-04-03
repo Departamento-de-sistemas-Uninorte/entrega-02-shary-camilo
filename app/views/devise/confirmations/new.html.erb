@@ -1,0 +1,39 @@
+
+<div class="container">
+	<div class="d-flex justify-content-center h-100">
+		<div class="card-forgot">
+            <div class="card-header d-flex justify-content-center" >
+                <p class="title-header">Resend confirmation email</p>
+            </div>
+        <div class="card-body">
+           <%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
+            <%= render "devise/shared/error_messages", resource: resource %>
+                <div class="input-group form-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fas fa-at"></i></span>
+              </div>
+              <%= f.email_field :email, 
+                  type:"text", 
+                  class:"form-control", 
+                  autofocus: true, 
+                  autocomplete: "email",
+                  placeholder: "Email"  %>
+          </div>
+                
+                <div class="input-group form-group">
+                    <%= f.submit "Resend email", class:"btn float-right large_btn"%>
+                </div>
+            <% end %>
+        </div>
+        <div class="card-footer">
+            <div class="d-flex justify-content-center links">
+              <%= link_to "Sign in", new_session_path(resource_name) %>
+            </div>
+            <div class="d-flex justify-content-center">
+					    <%= link_to "Forgot your password?", new_password_path(resource_name) %>
+            </div>
+        </div>
+    </div>  
+    </div>
+	</div>
+</div>

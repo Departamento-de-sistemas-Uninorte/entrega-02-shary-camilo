@@ -3,12 +3,15 @@
 * 
 Reemplanzar información
 
-< Nombre del estudiante 1 > - < Código del estudiante 1 >
+< Shary Bustos Montenegro > - < 200088452 >
 
-< Nombre del estudiante 2 > - < Código del estudiante 2 >
+< Camilo Delgado Uribe > - < 200089714 >
 
-< Link a la API en el servidor (Heroku o el servicio de tu preferencia) >
+< https://night-thoughts.herokuapp.com/ >
 
-< Link a la documentación >
+< https://documenter.getpostman.com/view/12531137/TzCP8TTF >
 
-Información relevante
+Por una equivocación, todos los commits de la entrega 02 se hicieron en la entrega 01. 
+En la entrega 02, sólo estará el commit final. 
+Aquí se pueden revisar las contribuciones:
+<   https://github.com/Departamento-de-sistemas-Uninorte/entrega-01-shary-camilo  >

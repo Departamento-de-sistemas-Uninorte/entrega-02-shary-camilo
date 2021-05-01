@@ -1,22 +1,30 @@
 require 'rails_helper'
 
 RSpec.describe ProfilesController, type: :controller do
-  context "When the user is signed in" do
-    let(:user) { create(:user) }
-    before do
-        
-        sign_in user
-        post :create, params: {
-            tsuit: {
-                content: 'This is a UN test',
-                user_id: user.id
-            }
-        }
-    end
 
-    it "should create a new tsuit" do
-        expect(Profile.last.content).to eq('This is a UN test')
-    end
-end
+  let(:valid_attributes) do
+    {
+      'tweet' => 'Test',
+      'user_name' => 'test'
+    }
+  end
+
+  let(:invalid_attributes) do
+    {
+      'id' => 'A',
+      'tweet' => 'This is a UN testThis is a UN testThis is a UN testThis is a UN testThis is a UN testThis is a UN testThis is a UN testThis is a UN testThis is a UN testThis is a UN testThis is a UN testThis is a UN testThis is a UN testThis is a UN testThis is a UN testThis is a UN testThis is a UN testThis is a UN testThis is a UN testThis is a UN test',
+      'user_name' => 'none'
+    }
+  end
   
+  describe "GET /create" do
+    it 'renders a successful response' do
+      profile = Profile.new(valid_attributes)
+      profile.user_name = 'test'
+      profile.save
+      expect(response).to be_successful
+
+    end
+  end
+
 end

@@ -1,0 +1,3 @@
+current directory: /mnt/c/entrega-02-shary-camilo/vendor/bundle/ruby/3.0.0/gems/mimemagic-0.3.10/ext/mimemagic
+rake RUBYARCHDIR\=/mnt/c/entrega-02-shary-camilo/vendor/bundle/ruby/3.0.0/extensions/x86_64-linux/3.0.0/mimemagic-0.3.10 RUBYLIBDIR\=/mnt/c/entrega-02-shary-camilo/vendor/bundle/ruby/3.0.0/extensions/x86_64-linux/3.0.0/mimemagic-0.3.10
+mkdir -p /mnt/c/entrega-02-shary-camilo/vendor/bundle/ruby/3.0.0/extensions/x86_64-linux/3.0.0/mimemagic-0.3.10/mimemagic

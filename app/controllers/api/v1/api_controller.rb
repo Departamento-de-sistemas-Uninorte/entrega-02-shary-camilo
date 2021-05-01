@@ -1,6 +1,7 @@
 module Api
 	module V1
-		class ApiController < ActionController::Base
+		class ApiController < ActionController::API
+			
 			skip_before_action :verify_authenticity_token
             before_action :authenticate
             def authenticate
@@ -9,7 +10,7 @@ module Api
 						if user.blank? 
 							head :no_content
 							message_error = "Sorry! You have not authenticated."
-							render :json => {:error => message_error}.to_json, :status => 400
+							render :json => {:error => message_error}.to_json, :status => 200
 						else       			
 							@current_user = user
 						end       		

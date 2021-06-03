@@ -31,7 +31,7 @@ module Api
 				end
 			end
 			def profile_params
-				params.require(:profile).permit(:tweet)
+				params.require(:profile).permit(:tweet, :image)
 			end	
 			def show
 				unless current_user.blank?

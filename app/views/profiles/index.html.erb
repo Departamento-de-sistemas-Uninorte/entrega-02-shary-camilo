@@ -10,6 +10,7 @@
 	<%= form_with(model: @profile, local: true) do |form| %>
 		<div class="field">
 			<%= form.text_area :tweet , placeholder: "¿Qué estás pensando?", maxlength:"280"%>
+			<%= form.file_field :image %>
 		</div>
 		<div>
 			<%= form.submit "publicar" %>
@@ -20,7 +21,8 @@
 <div>
 	<% @profiles.each do |t|%>
 		
-		<p><%=t.user_name%> - <%=t.tweet%> 
+		<p><%=t.user_name%> - <%=t.tweet%>
+		<%= image_tag(t.image,  :size => "180x135") if t.image.attached? %>
 		<%= link_to 'show', profile_path(t), method: :get=%>
 		<%= link_to 'delete', profile_path(t),
 				method: :delete, data: { confirm: 'Are you sure?' }=%>

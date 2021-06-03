@@ -32,6 +32,6 @@ class ProfilesController < ApplicationController
 	private
 
 	def profile_params
-		params.require(:profile).permit(:tweet)
+		params.require(:profile).permit(:tweet, :image)
 	end
 end

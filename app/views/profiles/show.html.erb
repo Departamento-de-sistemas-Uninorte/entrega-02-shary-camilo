@@ -6,6 +6,7 @@
 <p>
   <strong>Text:</strong>
   <%= @profile.tweet %>
+  <%= image_tag(@profile.image, :size => "180x135") if @profile.image.attached? %>
 </p>
 
 <!DOCTYPE html>

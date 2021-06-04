@@ -11,6 +11,8 @@ Rails.application.routes.draw do
 	      resources :profiles, only: [:index, :show, :create, :destroy]
 	      resources :hashtag
 	      resources :users, only: [:create, :index]
+		  get '/users/followers' , to: 'users#followers'
+		  get '/users/following' , to: 'users#followers'
 		  resources :likes
 		  resources :follows
 	    end

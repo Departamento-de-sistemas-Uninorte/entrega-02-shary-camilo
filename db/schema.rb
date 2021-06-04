@@ -40,7 +40,6 @@ ActiveRecord::Schema.define(version: 2021_06_04_153658) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
-<<<<<<< HEAD
   create_table "follows", force: :cascade do |t|
     t.integer "user_id"
     t.integer "following_id"
@@ -49,8 +48,6 @@ ActiveRecord::Schema.define(version: 2021_06_04_153658) do
     t.index ["user_id"], name: "index_follows_on_user_id"
   end
 
-=======
->>>>>>> fe73d7a6c41105ac695659601e7692d1d76a97a6
   create_table "likes", force: :cascade do |t|
     t.integer "user_id"
     t.integer "profile_id"
@@ -58,7 +55,6 @@ ActiveRecord::Schema.define(version: 2021_06_04_153658) do
     t.index ["user_id"], name: "index_likes_on_user_id"
   end
 
-<<<<<<< HEAD
   create_table "messages", force: :cascade do |t|
     t.integer "user_id"
     t.integer "profile_id"
@@ -66,8 +62,6 @@ ActiveRecord::Schema.define(version: 2021_06_04_153658) do
     t.index ["user_id"], name: "index_messages_on_user_id"
   end
 
-=======
->>>>>>> fe73d7a6c41105ac695659601e7692d1d76a97a6
   create_table "profiles", force: :cascade do |t|
     t.text "tweet"
     t.string "user_name"
@@ -98,15 +92,10 @@ ActiveRecord::Schema.define(version: 2021_06_04_153658) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-<<<<<<< HEAD
   add_foreign_key "follows", "users"
   add_foreign_key "likes", "profiles"
   add_foreign_key "likes", "users"
   add_foreign_key "messages", "profiles"
   add_foreign_key "messages", "users"
-=======
-  add_foreign_key "likes", "profiles"
-  add_foreign_key "likes", "users"
->>>>>>> fe73d7a6c41105ac695659601e7692d1d76a97a6
   add_foreign_key "profiles", "users"
 end

@@ -21,16 +21,32 @@ module Api
 			end
 			
 			def followers
-				user = User.find_by(email: params.require(:email))
-				if user.valid_password?(params.require(:password))
-					 render :json=>{"user"=>user}.to_json
+				unless current_user.blank?
+					@follows = Follow.where(following_id: @current_user.id)
+					array = []
+					@follows.each do |follow|
+						user = User.select('user_name', 'id').find(follow.user_id)
+						array.push(user)
+					end
+					render json: {follows: array}
+				else
+					message_error = "Sorry! Authenticate yourself first."
+					render :json => {:error => message_error}.to_json, :status => 400
 				end
 			end
 
 			def following
-				user = User.find_by(email: params.require(:email))
-				if user.valid_password?(params.require(:password))
-					 render :json=>{"user"=>user}.to_json
+				unless current_user.blank?
+					@follows = Follow.find_by(user_id: @current_user.id)
+					array = []
+					@follows.each do |follow|
+						user = User.select('user_name', 'id').find(follow.user_id)
+						array.push(user)
+					end
+					render json: {follows: array}
+				else
+					message_error = "Sorry! Authenticate yourself first."
+					render :json => {:error => message_error}.to_json, :status => 400
 				end
 			end
 		end	

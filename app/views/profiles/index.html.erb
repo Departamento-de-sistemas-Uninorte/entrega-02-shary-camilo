@@ -23,6 +23,8 @@
 		
 		<p><%=t.user_name%> - <%=t.tweet%>
 		<%= image_tag(t.image,  :size => "180x135") if t.image.attached? %>
+		<label><%= t.likes.length %></label>
+		<%= link_to 'like', likes_path(id:t.id), method: :post=%>
 		<%= link_to 'show', profile_path(t), method: :get=%>
 		<%= link_to 'delete', profile_path(t),
 				method: :delete, data: { confirm: 'Are you sure?' }=%>

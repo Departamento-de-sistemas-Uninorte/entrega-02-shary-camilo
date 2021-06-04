@@ -15,6 +15,7 @@ module Api
 				unless current_user.blank?
 					@profile = Profile.new(profile_params)
 					@profile.user_name = @current_user.user_name
+					@profile.user_id = @current_user.id
 					if @profile.save
 						render json: @profile
 					else

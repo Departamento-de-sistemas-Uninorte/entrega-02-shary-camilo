@@ -1,0 +1,8 @@
+class Messages < ActiveRecord::Migration[6.1]
+  def change
+    create_table :messages do |t|
+      t.belongs_to :user, foreign_key: true
+      t.belongs_to :profile, foreign_key: true
+    end
+  end
+end

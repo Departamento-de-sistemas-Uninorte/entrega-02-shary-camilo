@@ -10,6 +10,8 @@ class User < ApplicationRecord
 	end
 
 	validates :user_name, uniqueness: true
- 	has_many :profile
+ 	has_many :profiles
+	has_many :likes
+	has_many :follows
 
 end

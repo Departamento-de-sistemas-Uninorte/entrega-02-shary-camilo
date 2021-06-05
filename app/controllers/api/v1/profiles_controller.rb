@@ -4,13 +4,13 @@ module Api
 
 			def index
 				unless current_user.blank?
-					@follows = Follow.where(user_id: @current_user.id)
+					@follows = Follow.where(user_id: @current_user.id) #filas donde estoy yo
 					array = []
 					@follows.each do |follow|
-						tweet = Profile.select('tweet', 'user_name', 'id').find(follow.following_id)
+						tweet = Profile.select('tweet', 'user_name', 'id').where(user_id: follow.following_id)#quienes son
 						array.push(tweet)
 					end
-					@tweets = Profile.select('tweet', 'user_name', 'id').where(user_id: @current_user.id)
+					@tweets = Profile.select('tweet', 'user_name', 'id').where(user_id: @current_user.id) #tweets mios
 					render json: {following_tweets: array, own_tweets: @tweets}
 				else
 					message_error = "Sorry! Authenticate yourself first."

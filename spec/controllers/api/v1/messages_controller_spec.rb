@@ -1,5 +1,34 @@
 require 'rails_helper'
-
+RSpec.describe Api::V1::MessagesController, "#index" do
+    context "ver mensajes" do
+        let(:user) {create(:user)}
+        before do
+            request.headers["Authorization"] = ActionController::HttpAuthentication::Basic.encode_credentials(user.email, user.authentication_token)
+            get :index 
+        end
+        it "should return HTTP success code" do
+            expect(response).to have_http_status(200)
+        end
+        it "should return messages in JSON body" do
+            json_response = JSON.parse(response.body)
+            expect(json_response.keys).to  match_array(["messages"])
+        end
+    end
+    context "user no logeado" do
+        let(:user) {create(:user)}
+        before do
+        
+            get :index 
+        end
+        it "should return HTTP not found code" do
+            expect(response).to have_http_status(404)
+        end
+        it "should return error in JSON body" do
+            json_response = JSON.parse(response.body)
+            expect(json_response.keys).to  match_array(["error"])
+        end
+    end
+end 
 RSpec.describe Api::V1::MessagesController, "#create" do 
     context "message" do
         let(:user) {create(:user)}

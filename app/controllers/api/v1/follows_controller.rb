@@ -13,7 +13,7 @@ module Api
                                 Follow.create(user_id: @current_user.id,
                                             following_id: @user.id)
                                 message = "You follow this user."
-                                render :json => message, :status => 200
+                                render :json => {success: message}, :status => 200
                             else
                                 follow.first.destroy
                                 message = "You unfollow this user."

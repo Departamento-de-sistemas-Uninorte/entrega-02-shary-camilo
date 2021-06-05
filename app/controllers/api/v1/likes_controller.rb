@@ -1,6 +1,15 @@
 module Api
 	module V1
 		class LikesController < ApiController
+
+            def index
+                if Profile.exists?(params[:id])
+                    @profile = Profile.find(params[:id])
+                    like = Like.where(profile_id: @profile.id).length
+                    render json: {likes: like}
+
+                end
+            end
             def create
                 if Profile.exists?(params[:id])
                     @profile = Profile.find(params[:id])

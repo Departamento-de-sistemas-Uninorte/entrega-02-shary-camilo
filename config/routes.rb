@@ -12,7 +12,7 @@ Rails.application.routes.draw do
 	      resources :hashtag
 	      resources :users, only: [:create, :index]
 		  get '/users/followers' , to: 'users#followers'
-		  get '/users/following' , to: 'users#followers'
+		  get '/users/following' , to: 'users#following'
 		  resources :likes
 		  resources :follows
 		  resources :messages

@@ -28,7 +28,7 @@ module Api
 						user = User.select('user_name', 'id').find(follow.user_id)
 						array.push(user)
 					end
-					render json: {follows: array}
+					render json: {followers: array}
 				else
 					message_error = "Sorry! Authenticate yourself first."
 					render :json => {:error => message_error}.to_json, :status => 400
@@ -37,13 +37,13 @@ module Api
 
 			def following
 				unless current_user.blank?
-					@follows = Follow.find_by(user_id: @current_user.id)
+					@follows = Follow.where(user_id: @current_user.id)
 					array = []
 					@follows.each do |follow|
-						user = User.select('user_name', 'id').find(follow.user_id)
+						user = User.select('user_name', 'id').find(follow.following_id)
 						array.push(user)
 					end
-					render json: {follows: array}
+					render json: {following: array}
 				else
 					message_error = "Sorry! Authenticate yourself first."
 					render :json => {:error => message_error}.to_json, :status => 400

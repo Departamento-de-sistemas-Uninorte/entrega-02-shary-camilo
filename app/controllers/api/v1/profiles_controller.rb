@@ -10,7 +10,7 @@ module Api
 						tweet = Profile.select('tweet', 'user_name', 'id').find(follow.user_id)
 						array.push(tweet)
 					end
-					@tweets = Profile.select('tweet', 'user_name', 'id').where(id: @current_user.id)
+					@tweets = Profile.select('tweet', 'user_name', 'id').where(user_id: @current_user.id)
 					render json: {following_tweets: array, own_tweets: @tweets}
 				else
 					message_error = "Sorry! Authenticate yourself first."

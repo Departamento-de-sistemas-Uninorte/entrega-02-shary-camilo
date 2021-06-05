@@ -9,21 +9,21 @@ module Api
 
                     if @follows.blank?
                         message = "Sorry! You cannot send direct messages to this user. Must be followed by this user to send direct messages."
-                        render :json => {:error => message}.to_json, :status => 400
+                        render :json => {:error => message}.to_json, :status => 404
                     else
                         @message = Message.new(message: params[:message])
 					    @message.user_id = @current_user.id
 					    @message.user_message_id = @user.id
                         if @message.save
-                            render json: @message
+                            render json: {message: @message}
                         else
                             message_error = "Sorry! The direct message could not be send."
-                            render :json => {:error => message_error}.to_json, :status => 400
+                            render :json => {:error => message_error}.to_json, :status => 404
                         end
                     end
                 else
                     message_error = "Sorry! Authenticate yourself first."
-					render :json => {:error => message_error}.to_json, :status => 400 
+					render :json => {:error => message_error}.to_json, :status => 404 
                 end
                 
             end

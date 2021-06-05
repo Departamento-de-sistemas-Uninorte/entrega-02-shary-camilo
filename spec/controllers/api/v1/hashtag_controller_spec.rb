@@ -13,7 +13,10 @@ RSpec.describe Api::V1::HashtagController, "#index" do
         it "should return HTTP success code" do
             expect(response).to have_http_status(:success)
         end
-        
+        it "should return Tweets in JSON body" do
+            json_response = JSON.parse(response.body)
+            expect(json_response.keys).to  match_array(["tweets"])
+        end
     end
     context "hashtag no encontrado" do
         let(:user) {create(:user)}
@@ -27,6 +30,10 @@ RSpec.describe Api::V1::HashtagController, "#index" do
         it "should return HTTP success code" do
             expect(response).to have_http_status(:success)
         end
+        it "should return Tweets in JSON body" do
+            json_response = JSON.parse(response.body)
+            expect(json_response.keys).to  match_array(["tweets"])
+        end
         
     end
     context "no hg" do
@@ -38,8 +45,12 @@ RSpec.describe Api::V1::HashtagController, "#index" do
             request.headers["Authorization"] = ActionController::HttpAuthentication::Basic.encode_credentials(user.email, user.authentication_token)
             get :index, params: {hashtag: "ok"} 
         end
-        it "should return HTTP success code" do
-            expect(response).to have_http_status(400)
+        it "should return HTTP not found code" do
+            expect(response).to have_http_status(404)
+        end
+        it "should return error in JSON body" do
+            json_response = JSON.parse(response.body)
+            expect(json_response.keys).to  match_array(["error"])
         end
         
     end
@@ -52,8 +63,12 @@ RSpec.describe Api::V1::HashtagController, "#index" do
           
             get :index, params: {hashtag: "#ok"} 
         end
-        it "should return HTTP success code" do
-            expect(response).to have_http_status(400)
+        it "should return HTTP not found code" do
+            expect(response).to have_http_status(404)
+        end
+        it "should return error in JSON body" do
+            json_response = JSON.parse(response.body)
+            expect(json_response.keys).to  match_array(["error"])
         end
         
     end

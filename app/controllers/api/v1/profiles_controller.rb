@@ -4,10 +4,10 @@ module Api
 
 			def index
 				unless current_user.blank?
-					@follows = Follow.where(following_id: @current_user.id)
+					@follows = Follow.where(user_id: @current_user.id)
 					array = []
 					@follows.each do |follow|
-						tweet = Profile.select('tweet', 'user_name', 'id').find(follow.user_id)
+						tweet = Profile.select('tweet', 'user_name', 'id').find(follow.following_id)
 						array.push(tweet)
 					end
 					@tweets = Profile.select('tweet', 'user_name', 'id').where(user_id: @current_user.id)

@@ -1,4 +1,23 @@
 require 'rails_helper'
+RSpec.describe Api::V1::LikesController, "#index" do
+    context "like" do
+        let(:user) {create(:user)}
+        let(:profile) {create(:profile )}
+        before do
+            request.headers["Authorization"] = ActionController::HttpAuthentication::Basic.encode_credentials(user.email, user.authentication_token)
+            get :index, params: { id: profile.id} 
+        end
+        it "should return HTTP success code" do
+            expect(response).to have_http_status(:success)
+        end
+        it "should return likes in JSON body" do
+            json_response = JSON.parse(response.body)
+            expect(json_response.keys).to  match_array(["likes"])
+        end
+    end
+
+end 
+
 
 RSpec.describe Api::V1::LikesController, "#create" do 
 	context "like" do

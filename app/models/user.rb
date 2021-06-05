@@ -12,5 +12,6 @@ class User < ApplicationRecord
 	validates :user_name, uniqueness: true
  	has_many :profiles
 	has_many :likes
+	has_many :follows
 
 end

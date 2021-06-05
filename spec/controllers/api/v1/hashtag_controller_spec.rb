@@ -43,5 +43,19 @@ RSpec.describe Api::V1::HashtagController, "#index" do
         end
         
     end
+    context "user no logeado" do
+        let(:user) {create(:user)}
+        let(:profile) {create(:profile )}
+        before do
+            # request.headers["Username"] = user.email
+            # request.headers["Password"] = user.authentication_token
+          
+            get :index, params: {hashtag: "#ok"} 
+        end
+        it "should return HTTP success code" do
+            expect(response).to have_http_status(400)
+        end
+        
+    end
    
 end

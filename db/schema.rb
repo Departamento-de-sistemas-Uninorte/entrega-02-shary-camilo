@@ -95,8 +95,5 @@ ActiveRecord::Schema.define(version: 2021_06_04_153658) do
   add_foreign_key "follows", "users"
   add_foreign_key "likes", "profiles"
   add_foreign_key "likes", "users"
-
   add_foreign_key "messages", "users"
-  add_foreign_key "profiles", "users"
-
 end

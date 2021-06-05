@@ -6,11 +6,12 @@ module Api
                     @user = User.find(params[:id])
                     @follows = Follow.where(user_id: @user.id,
                                             following_id: @current_user.id)
+
                     if @follows.blank?
                         message = "Sorry! You cannot send direct messages to this user. Must be followed by this user to send direct messages."
                         render :json => {:error => message}.to_json, :status => 400
                     else
-                        @message = Message.new(message_params)
+                        @message = Message.new(message: params[:message])
 					    @message.user_id = @current_user.id
 					    @message.user_message_id = @user.id
                         if @message.save
@@ -26,6 +27,9 @@ module Api
                 end
                 
             end
+             
+
         end 
+        
     end
 end

@@ -14,7 +14,7 @@ module Api
                     end
                 else
                     message = "Sorry! We didn't find what you're looking for."
-					render :json => message, :status => 200
+					render :json => message, :status => 400
                 end
             end
 

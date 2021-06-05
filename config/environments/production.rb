@@ -32,8 +32,8 @@ Rails.application.configure do
     :address => "smtp.gmail.com",
     :port => '587',
     :domain => "gmail.com",
-    :user_name => 'appserviciosback@gmail.com',
-    :password => 'backadmin1234'
+    :user_name => 'backendfinal123@gmail.com',
+    :password => 'adminback1234'
   }
   # Do not fallback to assets pipeline if a precompiled asset is missed.
   config.assets.compile = false

@@ -57,8 +57,10 @@ ActiveRecord::Schema.define(version: 2021_06_04_153658) do
 
   create_table "messages", force: :cascade do |t|
     t.integer "user_id"
-    t.integer "profile_id"
-    t.index ["profile_id"], name: "index_messages_on_profile_id"
+    t.integer "user_message_id"
+    t.string "message"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_messages_on_user_id"
   end
 
@@ -95,7 +97,6 @@ ActiveRecord::Schema.define(version: 2021_06_04_153658) do
   add_foreign_key "follows", "users"
   add_foreign_key "likes", "profiles"
   add_foreign_key "likes", "users"
-  add_foreign_key "messages", "profiles"
   add_foreign_key "messages", "users"
   add_foreign_key "profiles", "users"
 end

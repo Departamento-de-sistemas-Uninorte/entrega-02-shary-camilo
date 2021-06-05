@@ -15,6 +15,7 @@ Rails.application.routes.draw do
 		  get '/users/following' , to: 'users#followers'
 		  resources :likes
 		  resources :follows
+		  resources :messages
 	    end
 	end
 

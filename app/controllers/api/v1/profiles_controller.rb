@@ -4,8 +4,14 @@ module Api
 
 			def index
 				unless current_user.blank?
-					@profiles = Profile.all
-					render json: @profiles
+					@follows = Follow.where(following_id: @current_user.id)
+					array = []
+					@follows.each do |follow|
+						tweet = Profile.select('tweet', 'user_name', 'id').find(follow.user_id)
+						array.push(tweet)
+					end
+					@tweets = Profile.select('tweet', 'user_name', 'id').where(id: @current_user.id)
+					render json: {following_tweets: array, own_tweets: @tweets}
 				else
 					message_error = "Sorry! Authenticate yourself first."
 					render :json => {:error => message_error}.to_json, :status => 400

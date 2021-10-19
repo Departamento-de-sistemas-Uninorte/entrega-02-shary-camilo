@@ -1,32 +1,35 @@
-<header id="main-header">
-	<nav>
-		<ul>
-		
-		</ul>
-	</nav>
-</header>
 
-<div>
-	<%= form_with(model: @profile, local: true) do |form| %>
+<div class="card mx-auto" style="width:40rem; height: 20rem">
+  <h5 class="card-header text-white">What are you thinking?</h5>
+  <div class="card-body">
+    <%= form_with(model: @profile, local: true) do |form| %>
 		<div class="field">
-			<%= form.text_area :tweet , placeholder: "¿Qué estás pensando?", maxlength:"280"%>
+			<%= form.text_area :tweet, maxlength:"280", class: "input1"%>
 			<%= form.file_field :image %>
 		</div>
 		<div>
-			<%= form.submit "publicar" %>
+			<%= form.submit "Tweet", class: "btn btn-primary" %>
 		</div>
 	<% end %>
-
+  </div>
+  
 </div>
+
 <div>
 	<% @profiles.each do |t|%>
-		
-		<p><%=t.user_name%> - <%=t.tweet%>
-		<%= image_tag(t.image,  :size => "180x135") if t.image.attached? %>
-		<label><%= t.likes.length %></label>
-		<%= link_to 'like', likes_path(id:t.id), method: :post=%>
-		<%= link_to 'show', profile_path(t), method: :get=%>
-		<%= link_to 'delete', profile_path(t),
-				method: :delete, data: { confirm: 'Are you sure?' }=%>
+		<div class="card mb-3 mx-auto">
+			<div class="card-body">
+				<h5 class="card-header text-white mx-auto"><%=t.user_name%></h5>
+				<% if t.image.attached?%>
+					<%= image_tag(t.image, class: "test card-img-top")%>
+				<%end%>
+				<p class="card-text text-white"><%=t.tweet%></p>
+				<p class="card-footer"><small class="text-muted"><%= t.likes.length %> Likes | <%=t.created_at%></small></p>
+				<%= link_to 'like', likes_path(id:t.id), method: :post=%>
+				<%= link_to 'show', profile_path(t), method: :get=%>
+				<%= link_to 'delete', profile_path(t),
+						method: :delete, data: { confirm: 'Are you sure?' }=%>
+			</div>
+		</div>		
 	<%end%>
 </div>

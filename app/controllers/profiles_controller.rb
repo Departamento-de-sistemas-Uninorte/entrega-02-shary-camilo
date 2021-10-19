@@ -9,7 +9,6 @@ class ProfilesController < ApplicationController
 
 	def show
 		@profile = Profile.find(params[:id])
-
 	end
 
 	def create
@@ -28,7 +27,7 @@ class ProfilesController < ApplicationController
 	   
 		redirect_to profiles_path, :notice => "Your post has been deleted successfully."
 	end
-
+ 
 	private
 
 	def profile_params

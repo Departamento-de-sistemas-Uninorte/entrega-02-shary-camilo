@@ -1,36 +1,14 @@
-<p>
-  <strong>Title:</strong>
-  <%= @profile.user_name %>
-</p>
- 
-<p>
-  <strong>Text:</strong>
-  <%= @profile.tweet %>
-  <%= image_tag(@profile.image, :size => "180x135") if @profile.image.attached? %>
-  <label><%= @profile.likes.length %></label>
-  
-</p>
-
-<!DOCTYPE html>
-<html>
-<head>
-	<!--esto es una prueba-->
-	<meta charset="utf-8"/>
-	<title>Inicio</title>
-	<link rel="stylesheet" type="text/css" href="styles.css">
-</head>
-<body>
-	<header id="main-header">
-		<nav class="navbar navbar-dark bg-dark">
-  		<a class="navbar-brand title-header" href="/">night-thougths</a>
-		</nav>
-		
-		<%# <span>
-			<nav>
-				
-			</nav><!-- / nav -->
-		</span>
-	</header><!-- / #main-header --> %>
-
-</body>
-</html></header>
+<div class="card bg-light mb-3 center mx-auto">
+	<div class="card-body">
+		<h5 class="card-header text-white"><%=@profile.user_name%></h5>
+		<% if @profile.image.attached?%>
+			<%= image_tag(@profile.image, class: "test card-img-top")%>
+		<%end%>
+		<p class="card-text text-white"><%=@profile.tweet%></p>
+		<p class="card-footer"><small class="text-muted"><%= @profile.likes.length %> Likes | <%=@profile.created_at%></small></p>
+		<%= link_to 'like', likes_path(id:@profile.id), method: :post=%>
+		<%= link_to 'show', profile_path(@profile), method: :get=%>
+		<%= link_to 'delete', profile_path(@profile),
+				method: :delete, data: { confirm: 'Are you sure?' }=%>
+	</div>
+</div>
